@@ -76,7 +76,7 @@ public:
       double account_balance = AccountInfoDouble(ACCOUNT_BALANCE);
       double account_equity = AccountInfoDouble(ACCOUNT_EQUITY);
       
-      if(m_starting_balance <= 0)
+      if(m_starting_balance <= 0.0001)
       {
          LogMessage("Invalid starting balance");
          return false;
@@ -103,7 +103,7 @@ public:
       
       double account_balance = AccountInfoDouble(ACCOUNT_BALANCE);
       
-      if(m_daily_starting_balance <= 0)
+      if(m_daily_starting_balance <= 0.0001)
       {
          LogMessage("Invalid daily starting balance");
          return false;
@@ -245,7 +245,12 @@ public:
    {
       double balance = AccountInfoDouble(ACCOUNT_BALANCE);
       double equity = AccountInfoDouble(ACCOUNT_EQUITY);
-      double drawdown = ((m_starting_balance - equity) / m_starting_balance) * 100.0;
+      
+      double drawdown = 0;
+      if(m_starting_balance > 0.0001)
+      {
+         drawdown = ((m_starting_balance - equity) / m_starting_balance) * 100.0;
+      }
       
       ResetDailyBalanceIfNeeded();
       double daily_pl = balance - m_daily_starting_balance;

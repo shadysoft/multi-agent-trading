@@ -50,6 +50,11 @@ double PointsToPrice(double points)
 //+------------------------------------------------------------------+
 double PriceToPoints(double price)
 {
+   if(_Point <= 0)
+   {
+      Print("Error: Invalid _Point value");
+      return 0;
+   }
    return price / _Point;
 }
 
@@ -260,5 +265,10 @@ bool IsLowerLow(int shift1, int shift2)
 //+------------------------------------------------------------------+
 double DistanceInPoints(double price1, double price2)
 {
+   if(_Point <= 0)
+   {
+      Print("Error: Invalid _Point value");
+      return 0;
+   }
    return MathAbs(price1 - price2) / _Point;
 }

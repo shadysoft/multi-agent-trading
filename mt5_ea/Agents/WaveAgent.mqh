@@ -121,8 +121,9 @@ public:
          }
       }
       
-      // Look at last 4 swings to identify wave pattern
-      for(int i = 0; i < MathMin(m_swing_count - 3, 5); i++)
+      // Look at last 4 swings to identify wave pattern (ensure we don't exceed bounds)
+      int max_check = MathMin(m_swing_count - 3, 5);
+      for(int i = 0; i < max_check && (i + 3) < m_swing_count; i++)
       {
          // Bullish impulse: Low -> High -> Higher Low -> Higher High
          if(m_swings[i].type == -1 && m_swings[i + 1].type == 1 &&
@@ -162,8 +163,9 @@ public:
       if(m_swing_count < 3)
          return SIGNAL_NEUTRAL;
       
-      // Look for pullback patterns
-      for(int i = 0; i < MathMin(m_swing_count - 2, 5); i++)
+      // Look for pullback patterns (ensure we don't exceed bounds)
+      int max_check = MathMin(m_swing_count - 2, 5);
+      for(int i = 0; i < max_check && (i + 1) < m_swing_count; i++)
       {
          // Bullish correction: After uptrend, looking for pullback completion
          if(m_swings[i].type == 1 && m_swings[i + 1].type == -1)
@@ -219,11 +221,12 @@ public:
       if(m_swing_count < 2)
          return 0;
       
-      // Calculate momentum based on recent swing sizes
+      // Calculate momentum based on recent swing sizes (ensure we don't exceed bounds)
       double total_momentum = 0;
       int count = 0;
       
-      for(int i = 0; i < MathMin(m_swing_count - 1, 3); i++)
+      int max_check = MathMin(m_swing_count - 1, 3);
+      for(int i = 0; i < max_check && (i + 1) < m_swing_count; i++)
       {
          double swing_size = MathAbs(m_swings[i + 1].price - m_swings[i].price) / _Point;
          int bars_duration = MathAbs(m_swings[i + 1].bar_index - m_swings[i].bar_index);

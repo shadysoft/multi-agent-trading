@@ -1,0 +1,86 @@
+# Stocks Trading Configuration
+
+market:
+  name: "Stocks"
+  type: "stocks"
+  trading_hours: "9:30-16:00 EST"  # US Market hours
+  
+# Trading Symbols (Examples - can be expanded)
+symbols:
+  tech:
+    - "AAPL"   # Apple
+    - "MSFT"   # Microsoft
+    - "GOOGL"  # Google
+    - "AMZN"   # Amazon
+    - "META"   # Meta
+    - "NVDA"   # Nvidia
+    - "TSLA"   # Tesla
+  finance:
+    - "JPM"    # JP Morgan
+    - "BAC"    # Bank of America
+    - "GS"     # Goldman Sachs
+  energy:
+    - "XOM"    # Exxon Mobil
+    - "CVX"    # Chevron
+  indices:
+    - "SPY"    # S&P 500 ETF
+    - "QQQ"    # NASDAQ 100 ETF
+    - "DIA"    # Dow Jones ETF
+
+# Active symbols to trade
+active_symbols:
+  - "AAPL"
+  - "MSFT"
+  - "GOOGL"
+  - "SPY"
+
+# Meta-Agent Thresholds
+meta_agent:
+  confidence_threshold: 0.75
+  min_confidence_buy: 0.75
+  min_confidence_sell: 0.75
+
+# Risk Parameters
+risk:
+  max_spread_percent: 0.1  # 0.1% of price
+  min_atr_dollars: 0.5
+  max_position_size_percent: 1.0
+  risk_per_trade_percent: 1.0
+  
+# Position Management
+position_management:
+  sl_atr_multiplier: 2.0
+  tp_atr_multiplier: 3.0
+  enable_breakeven: true
+  breakeven_trigger_atr: 1.0
+  enable_trailing_stop: true
+  trailing_stop_atr: 1.5
+
+# Technical Indicators
+indicators:
+  ema_periods: [20, 50, 200]
+  adx_period: 14
+  adx_threshold: 25
+  atr_period: 14
+  rsi_period: 14
+  volume_ma_period: 20
+  
+# Smart Money Concepts
+smc:
+  min_order_block_touches: 2
+  fvg_min_size_percent: 0.5  # 0.5% of price
+  liquidity_zone_lookback: 50
+  
+# Wave Analysis
+wave:
+  min_impulse_bars: 5
+  min_correction_bars: 3
+  impulse_threshold: 0.6
+
+# Stock-Specific Settings
+stocks:
+  enable_after_hours_trading: false
+  enable_pre_market_trading: false
+  min_volume: 1000000  # Minimum daily volume
+  min_price: 10.0      # Minimum stock price
+  max_price: 1000.0    # Maximum stock price

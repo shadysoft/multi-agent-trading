@@ -1,0 +1,82 @@
+# Cryptocurrency Trading Configuration
+
+market:
+  name: "Cryptocurrency"
+  type: "crypto"
+  trading_hours: "24/7"  # 24 hours, 7 days a week
+  
+# Trading Symbols
+symbols:
+  major:
+    - "BTCUSD"  # Bitcoin
+    - "ETHUSD"  # Ethereum
+    - "BNBUSD"  # Binance Coin
+  altcoins:
+    - "XRPUSD"  # Ripple
+    - "ADAUSD"  # Cardano
+    - "SOLUSD"  # Solana
+    - "DOTUSD"  # Polkadot
+    - "MATICUSD" # Polygon
+  stablecoins:
+    - "USDTUSD" # Tether
+    - "USDCUSD" # USD Coin
+
+# Active symbols to trade
+active_symbols:
+  - "BTCUSD"
+  - "ETHUSD"
+
+# Meta-Agent Thresholds
+meta_agent:
+  confidence_threshold: 0.80  # 80% for crypto (higher due to volatility)
+  min_confidence_buy: 0.80
+  min_confidence_sell: 0.80
+
+# Risk Parameters
+risk:
+  max_spread_percent: 0.2  # 0.2% of price
+  min_atr_dollars: 50.0    # For BTC
+  max_position_size_percent: 0.5  # Lower due to high volatility
+  risk_per_trade_percent: 0.5
+  
+# Position Management
+position_management:
+  sl_atr_multiplier: 3.0   # Wider stops due to volatility
+  tp_atr_multiplier: 5.0
+  enable_breakeven: true
+  breakeven_trigger_atr: 1.5
+  enable_trailing_stop: true
+  trailing_stop_atr: 2.0
+
+# Technical Indicators
+indicators:
+  ema_periods: [20, 50, 200]
+  adx_period: 14
+  adx_threshold: 30  # Higher threshold for crypto
+  atr_period: 14
+  rsi_period: 14
+  volume_ma_period: 20
+  
+# Smart Money Concepts
+smc:
+  min_order_block_touches: 2
+  fvg_min_size_percent: 1.0  # 1% of price
+  liquidity_zone_lookback: 50
+  
+# Wave Analysis
+wave:
+  min_impulse_bars: 5
+  min_correction_bars: 3
+  impulse_threshold: 0.65
+
+# Crypto-Specific Settings
+crypto:
+  enable_weekend_trading: true
+  volatility_filter: true
+  max_volatility_percent: 10.0  # Maximum hourly volatility
+  min_market_cap: 1000000000     # $1B minimum market cap
+  
+# Exchange Settings (for reference)
+exchange:
+  default: "MT5"  # Using MT5 for execution
+  api_rate_limit: 100  # requests per minute

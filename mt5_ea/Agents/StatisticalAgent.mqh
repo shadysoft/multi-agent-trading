@@ -166,23 +166,24 @@ public:
    //+------------------------------------------------------------------+
    bool CheckNewsFilter()
    {
-      // This is a basic implementation
-      // In a production system, you would integrate with a news calendar
+      if(!AvoidNewsHours)
+         return true;
       
       MqlDateTime dt;
       TimeToStruct(TimeCurrent(), dt);
       
-      // Avoid trading during typical high-impact news hours
-      // (This is a simplified approach - customize based on your needs)
+      // Parse news hours from input string
+      string news_hours_str = NewsHours;
+      string hours[];
+      StringSplit(news_hours_str, ',', hours);
       
-      // Check if it's a major news hour (example: 8:30 AM, 10:00 AM, 2:00 PM EST)
-      int news_hours[] = {8, 10, 14, 15};
-      
-      for(int i = 0; i < ArraySize(news_hours); i++)
+      // Check if current hour matches any news hour
+      for(int i = 0; i < ArraySize(hours); i++)
       {
-         if(dt.hour == news_hours[i] && dt.min < 30)
+         int news_hour = (int)StringToInteger(hours[i]);
+         if(dt.hour == news_hour && dt.min < 30)
          {
-            m_block_reason = "Potential news hour (" + IntegerToString(dt.hour) + ":00)";
+            m_block_reason = "News hour (" + IntegerToString(dt.hour) + ":00)";
             return false;
          }
       }

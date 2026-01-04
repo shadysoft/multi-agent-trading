@@ -212,8 +212,8 @@ public:
       if(!HasConsensus(final_signal))
       {
          LogMessage("SignalAggregator: No consensus among agents");
-         // Reduce confidence if no consensus
-         final_confidence *= 0.7;
+         // Reduce confidence if no consensus (using configurable penalty)
+         final_confidence *= NoConsensusPenalty;
          
          // Re-check threshold after reduction
          if(final_confidence < min_threshold)

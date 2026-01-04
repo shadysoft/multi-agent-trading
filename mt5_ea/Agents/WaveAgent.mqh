@@ -63,7 +63,7 @@ public:
             }
          }
          
-         if(is_swing_high)
+         if(is_swing_high && m_swing_count < ArraySize(m_swings))
          {
             SwingPoint sp;
             sp.time = iTime(_Symbol, PERIOD_CURRENT, i);
@@ -85,7 +85,7 @@ public:
             }
          }
          
-         if(is_swing_low)
+         if(is_swing_low && m_swing_count < ArraySize(m_swings))
          {
             SwingPoint sp;
             sp.time = iTime(_Symbol, PERIOD_CURRENT, i);

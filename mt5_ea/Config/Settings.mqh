@@ -84,6 +84,7 @@ input double MinConfidenceForex = 75.0;              // Min confidence for Forex
 input double MinConfidenceGold = 80.0;               // Min confidence for Gold (%)
 input double MinConfidenceCrypto = 70.0;             // Min confidence for Crypto (%)
 input double MinConfidenceDefault = 75.0;            // Min confidence for other (%)
+input double NoConsensusPenalty = 0.7;               // Confidence penalty without consensus (0-1)
 
 //+------------------------------------------------------------------+
 //| Time Filter Settings                                             |
@@ -94,6 +95,8 @@ input int TradingStartHour = 8;                      // Trading start hour
 input int TradingEndHour = 20;                       // Trading end hour
 input bool AvoidFriday = true;                       // Avoid Friday late trading
 input int FridayStopHour = 18;                       // Stop trading on Friday at
+input bool AvoidNewsHours = false;                   // Avoid typical news hours
+input string NewsHours = "8,10,14,15";               // News hours (comma-separated)
 
 //+------------------------------------------------------------------+
 //| Trend Agent Settings                                             |

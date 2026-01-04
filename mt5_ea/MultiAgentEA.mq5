@@ -411,7 +411,14 @@ void UpdateDashboard()
    // Update drawdown
    double equity = AccountInfoDouble(ACCOUNT_EQUITY);
    double balance = AccountInfoDouble(ACCOUNT_BALANCE);
-   double dd = balance > 0 ? ((balance - equity) / balance) * 100.0 : 0;
+   
+   // Calculate drawdown from equity perspective
+   double dd = 0;
+   if(balance > 0)
+   {
+      dd = balance > equity ? ((balance - equity) / balance) * 100.0 : 0;
+   }
+   
    ObjectSetString(0, "Dashboard_DD", OBJPROP_TEXT, "Drawdown: " + FormatDouble(dd, 1) + "%");
    ObjectSetInteger(0, "Dashboard_DD", OBJPROP_COLOR, dd < 5.0 ? clrLime : (dd < 8.0 ? clrYellow : clrRed));
    

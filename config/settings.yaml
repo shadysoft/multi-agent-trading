@@ -1,0 +1,65 @@
+# Multi-Agent Trading System - General Settings
+
+# System Configuration
+system:
+  name: "Multi-Agent Trading System"
+  version: "0.1.0"
+  environment: "development"  # development, staging, production
+  
+# Trading Configuration
+trading:
+  enable_live_trading: false
+  enable_paper_trading: true
+  default_timeframe: "H1"
+  available_timeframes: ["M15", "M30", "H1", "H4", "D1"]
+
+# Meta-Agent Configuration
+meta_agent:
+  default_confidence_threshold: 0.75
+  min_agents_required: 3
+  enable_adaptive_weights: true
+  
+# Agent Weights (will be adjusted by learning agent)
+agent_weights:
+  trend_agent: 0.25
+  smc_agent: 0.25
+  statistical_agent: 0.20
+  wave_agent: 0.20
+  learning_agent: 0.10
+
+# Risk Management
+risk_management:
+  max_daily_loss_percent: 2.0
+  max_position_size_percent: 1.0
+  max_concurrent_trades: 5
+  max_correlation: 0.7
+  enable_drawdown_protection: true
+  max_drawdown_percent: 10.0
+
+# Database Configuration
+database:
+  type: "sqlite"  # sqlite or postgresql
+  path: "trading.db"
+  
+# Logging Configuration
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  log_to_file: true
+  log_to_console: true
+  log_file_path: "logs/trading.log"
+  max_log_size_mb: 50
+  backup_count: 5
+
+# Dashboard Configuration
+dashboard:
+  host: "localhost"
+  port: 8501
+  refresh_interval_seconds: 5
+  enable_alerts: true
+  
+# Notifications
+notifications:
+  telegram:
+    enabled: false
+  email:
+    enabled: false

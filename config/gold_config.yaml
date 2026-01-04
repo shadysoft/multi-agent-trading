@@ -1,0 +1,74 @@
+# Gold and Commodities Trading Configuration
+
+market:
+  name: "Gold & Commodities"
+  type: "commodities"
+  trading_hours: "23/5"  # 23 hours, 5 days a week
+  
+# Trading Symbols
+symbols:
+  precious_metals:
+    - "XAUUSD"  # Gold
+    - "XAGUSD"  # Silver
+    - "XPTUSD"  # Platinum
+    - "XPDUSD"  # Palladium
+  energy:
+    - "USOIL"   # US Crude Oil
+    - "UKOIL"   # Brent Crude Oil
+  other:
+    - "COPPER"
+
+# Active symbols to trade
+active_symbols:
+  - "XAUUSD"
+  - "XAGUSD"
+
+# Meta-Agent Thresholds
+meta_agent:
+  confidence_threshold: 0.80  # 80% for gold (higher threshold)
+  min_confidence_buy: 0.80
+  min_confidence_sell: 0.80
+
+# Risk Parameters
+risk:
+  max_spread_cents: 30  # For XAUUSD
+  min_atr_dollars: 5.0  # For XAUUSD
+  max_position_size_percent: 0.8
+  risk_per_trade_percent: 0.8
+  
+# Position Management
+position_management:
+  sl_atr_multiplier: 2.5
+  tp_atr_multiplier: 4.0
+  enable_breakeven: true
+  breakeven_trigger_atr: 1.5
+  enable_trailing_stop: true
+  trailing_stop_atr: 2.0
+
+# Technical Indicators
+indicators:
+  ema_periods: [20, 50, 200]
+  adx_period: 14
+  adx_threshold: 30  # Higher threshold for gold
+  atr_period: 14
+  rsi_period: 14
+  
+# Smart Money Concepts
+smc:
+  min_order_block_touches: 2
+  fvg_min_size_dollars: 2  # For XAUUSD
+  liquidity_zone_lookback: 50
+  
+# Wave Analysis
+wave:
+  min_impulse_bars: 5
+  min_correction_bars: 3
+  impulse_threshold: 0.65
+
+# Gold-Specific Settings
+gold:
+  XAUUSD:
+    contract_size: 100  # 100 oz
+    min_lot_size: 0.01
+    max_lot_size: 10.0
+    pip_value: 0.01

@@ -53,9 +53,9 @@ class OrderManager:
                 logger.warning(f"Trade validation failed: {validation['message']}")
                 return None
             
-            # Get current price
+            # Get current price from MT5
             symbol = trade_signal.symbol
-            tick = self.mt5.get_account_info()  # This should actually get tick info
+            tick_info = self.mt5.mt5_connector.get_current_price(symbol) if hasattr(self.mt5, 'mt5_connector') else None
             
             # For now, use signal entry price if available
             if trade_signal.entry_price:

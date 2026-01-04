@@ -14,6 +14,7 @@ class ConfidenceCalculator:
 
     def __init__(self):
         """Initialize confidence calculator."""
+        # No initialization needed - stateless calculator
         pass
 
     def calculate_aggregate_confidence(
